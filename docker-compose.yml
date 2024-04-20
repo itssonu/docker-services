@@ -18,6 +18,8 @@ services:
     restart: always
     ports:
       - "5050:80"  # Map container port 80 to host port 5050
+    volumes:
+      - ./postgresql/pgadmin:/var/lib/pgadmin
     environment:
       - PGADMIN_DEFAULT_EMAIL=pgadmin@sonu.info
       - PGADMIN_DEFAULT_PASSWORD=pgadmin
