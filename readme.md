@@ -8,6 +8,21 @@ Before starting any service, ensure that a Docker network named `docker_services
 
 To create the Docker network, run the following command:
 
-```bash
+```
 docker network create docker_services_network
+```
+
+## How to Use Services
+
+To use a specific service, navigate to its directory using the command line. For example, if you want to use PostgreSQL, navigate to the `postgresql` directory:
+
+```
+cd postgresql
+```
+Then, run the following command to start the service:
+```
+docker-compose up -d
+```
+
+
 
