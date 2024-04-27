@@ -1,29 +1,39 @@
 services:
   php:
-    image: php:8.2-apache    #check the php version you need for your project
+    build:
+      context: .
+      dockerfile: Dockerfile.php
     ports:
-      - "80:80"    #this line maps your pc port to the container port
+      - "80:80"
     depends_on:
-      - mysql    #this line links this container to the db container
+      - mysql
     volumes:
-      - ./html:/var/www/html    #this line maps the content of ./html in your pc to the /var/www/html of the container
+      - ./html:/var/www/html
+    networks:
+      - docker_services_network
+
   mysql:
-    image: mysql:8.1.0    #check the mysql version you need for your project
+    image: mysql:8.1.0
     environment:
-      MYSQL_ROOT_PASSWORD: root    #you can change the mysql root password here
-      MYSQL_DATABASE: initialDB    #you can change the database name here
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: initialDB
     volumes:
-      - ./mysql_data:/var/lib/mysql    #this line maps the content of ./mysql_data in your pc to the /var/lib/mysql of the container
+      - ./mysql/data:/var/lib/mysql
+    networks:
+      - docker_services_network
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "5051:80"    #this line maps your pc port to the container port
+      - "5051:80"
     depends_on:
-      - mysql    #this line links this container to the db container
+      - mysql
     environment:
       PMA_HOST: mysql
+    networks:
+      - docker_services_network
 
-  composer:
-    image: composer:latest
-    volumes:
-      - ./html:/app
+networks:
+  docker_services_network:
+    external:
+      name: docker_services_network

@@ -1,4 +1,6 @@
 pgadmin/pgadmin
 postgresql/postgresql
 lamp/html
-lamp/mysql_data
+lamp/html/*
+lamp/mysql
+lamp/mysql/*
