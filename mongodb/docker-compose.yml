@@ -1,0 +1,19 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./mongodb/data:/data/db # Bind mount for MongoDB data
+      - ./mongodb/mongod.conf:/etc/mongo/mongod.conf # Optional: bind mount for custom MongoDB config file
+
+
+networks:
+  docker_services_network:
+    external:
+      name: docker_services_network
