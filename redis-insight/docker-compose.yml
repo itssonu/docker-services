@@ -1,16 +1,19 @@
 services:
-
   redisinsight:
     image: redis/redisinsight:latest
     restart: always
     ports:
       - "5540:5540"
     volumes:
-      - ./redis-insight/data:/data
+      - redisinsight_data:/data
     networks:
       - docker_services_network
 
+volumes:
+  redisinsight_data:
+    name: redisinsight_data
+
 networks:
   docker_services_network:
-    external:
-      name: docker_services_network
+    name: docker_services_network
+    external: true

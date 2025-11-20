@@ -1,5 +1,28 @@
-pgadmin/pgadmin
-postgresql/postgresql
-redis/redis
-redis-insight/redis-insight
-mongodb/mongodb
+# Data directories (now using Docker volumes, but keeping in case of bind mounts)
+mongodb/mongodb/
+postgresql/postgresql/
+redis/data/
+redis-insight/data/
+pgadmin/pgadmin/
+
+# Config files to keep for reference (optional - comment out if you want to version control them)
+# mongodb/mongod.conf
+# redis/redis.conf
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Log files
+*.log
+logs/
+
+# Environment files (if you add them later)
+.env
+.env.local

@@ -9,11 +9,16 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
-      - ./mongodb/data:/data/db # Bind mount for MongoDB data
-      - ./mongodb/mongod.conf:/etc/mongo/mongod.conf # Optional: bind mount for custom MongoDB config file
+      - mongodb_data:/data/db
+      - ./mongod.conf:/etc/mongo/mongod.conf:ro # Optional: Uncomment and create mongod.conf if you need custom configuration
+    networks:
+      - docker_services_network
 
+volumes:
+  mongodb_data:
+    name: mongodb_data
 
 networks:
   docker_services_network:
-    external:
-      name: docker_services_network
+    name: docker_services_network
+    external: true

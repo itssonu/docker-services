@@ -3,7 +3,7 @@ services:
     image: postgres:16
     restart: always
     volumes:
-      - ./postgresql:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"  # Map container port 5432 to host port 5432
     environment:
@@ -12,6 +12,10 @@ services:
       - POSTGRES_PASSWORD=root
     networks:
       - docker_services_network
+
+volumes:
+  postgres_data:
+    name: postgres_data
 
 networks:
   docker_services_network:
