@@ -26,3 +26,5 @@ logs/
 # Environment files (if you add them later)
 .env
 .env.local
+
+.claude
